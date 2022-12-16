@@ -1,0 +1,25 @@
+﻿
+@model MvcWorkspace.Models.Expense
+@{
+    ViewData["Title"] = "AddOrUpdate";
+}
+
+<div class="container">
+    <form>
+
+        <input asp-for="Id" hidden />
+
+        <label asp-for="ExpenseName" class="form-label"></label>
+        <input asp-for="ExpenseName" class="form-control"/>
+        <div aps-validation-for="ExpenseName"></div>
+
+        <label asp-for="Amount" class="form-label"></label>
+        <input asp-for="Amount" class="form-control"/>
+        <div aps-validation-for="Amount"></div>
+
+
+
+        <a type="post" class="btn btn-primary mt-3" asp-controller="Expense" asp-action="AddOrUpdate"> ADD OR UPDATE </a>
+
+    </form>
+</div>

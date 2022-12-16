@@ -26,5 +26,48 @@ namespace MvcWorkspace.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult AddOrUpdate(int? id)
+        {
+            if(id == null) 
+            {
+                return View(new Expense());
+            }
+            else 
+            {
+                var ex = _db.Expenses.Find(id);
+                if(ex == null || id == 0) return NotFound(); 
+                else return View(ex);
+
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddOrUpdate(Expense expense)
+        {
+            if (ModelState.IsValid) 
+            {
+                if(expense.Id == 0) { }
+                else 
+                {
+                    if (_db.Expenses.Find(expense) == null)
+                    {
+                        _db.Expenses.Add(expense);
+                        _db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else 
+                    { 
+                        _db.Expenses.Update(expense);
+                        _db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+                
+            }
+
+            return View(expense);
+        }
     }
 }
