@@ -15,5 +15,8 @@ namespace MvcWorkspace.Models
         [Range(1, int.MaxValue, ErrorMessage ="Yanlış Değer köşende ağlayabilirsin EZİK")]
         public int Amount { get; set; }
         
+        [ForeignKey("ExpenseCategory")]
+        public int C_Id {get; set;}
+        public ExpenseCategory ExpenseCategory {get; set;}
     }
 }
