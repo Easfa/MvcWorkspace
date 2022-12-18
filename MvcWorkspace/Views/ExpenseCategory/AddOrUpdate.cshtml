@@ -1,0 +1,20 @@
+
+@model MvcWorkspace.Models.ExpenseCategory
+@{
+    ViewData["Title"] = "AddOrUpdate";
+}
+
+<div class="container">
+    <form>
+
+        <input asp-for="C_Id" hidden />
+
+        <label asp-for="ExpenseCName" class="form-label"></label>
+        <input asp-for="ExpenseCName" class="form-control"/>
+        <div aps-validation-for="ExpenseCName"></div>
+ 
+
+        <a type="post" class="btn btn-primary mt-3" asp-controller="ExpenseCategory" asp-action="AddOrUpdate"> ADD OR UPDATE </a>
+
+    </form>
+</div>
