@@ -1,20 +1,33 @@
-
 @model MvcWorkspace.Models.ExpenseCategory
-@{
-    ViewData["Title"] = "AddOrUpdate";
-}
 
-<div class="container">
-    <form>
+<form method="post" asp-action="AddOrUpdate">
+    <div class="p-3 col-12">
+         <input type="hidden" asp-for="C_Id" />
+        <h2 class="text-black-50 pl-3">Add Expense Category</h2>
+        <div class="row col-6">
+            <div class="pb-3">
+                <label asp-for="ExpenseCName" class="form-label"></label>
+                <input asp-for="ExpenseCName" class="form-control"/>
+                <span asp-validation-for="ExpenseCName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 text-start">
+                <a asp-action="Index" class="btn btn-outline-primary w-100 ">Back</a>
+            </div>
+            <div class="col-3 text-end">
 
-        <input asp-for="C_Id" hidden />
-
-        <label asp-for="ExpenseCName" class="form-label"></label>
-        <input asp-for="ExpenseCName" class="form-control"/>
-        <div aps-validation-for="ExpenseCName"></div>
- 
-
-        <a type="post" class="btn btn-primary mt-3" asp-controller="ExpenseCategory" asp-action="AddOrUpdate"> ADD OR UPDATE </a>
-
-    </form>
-</div>
+                @{
+                    if(Model.C_Id == 0)
+                    {
+                        <input type="submit" class="btn btn-info w-100" value="Create" />
+                    }
+                    else
+                    {
+                        <input type="submit" class="btn btn-info w-100" value="Update" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</form>

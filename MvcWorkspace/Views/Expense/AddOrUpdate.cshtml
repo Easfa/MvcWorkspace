@@ -1,25 +1,38 @@
-﻿
-@model MvcWorkspace.Models.Expense
-@{
-    ViewData["Title"] = "AddOrUpdate";
-}
+﻿@model MvcWorkspace.Models.Expense
 
-<div class="container">
-    <form>
+<form method="post" asp-action="AddOrUpdate">
+    <div class="p-3 col-12">
+         <input type="hidden" asp-for="Id" />
+        <h2 class="text-black-50 pl-3">Add Expense</h2>
+        <div class="row col-6">
+            <div class="pb-3">
+                <label asp-for="ExpenseName" class="form-label"></label>
+                <input asp-for="ExpenseName" class="form-control"/>
+                <span asp-validation-for="ExpenseName" class="text-danger"></span>
+            </div>
+            <div class="pb-3">
+                <label asp-for="Amount" class="form-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 text-start">
+                <a asp-action="Index" class="btn btn-outline-primary w-100 ">Back</a>
+            </div>
+            <div class="col-3 text-end">
 
-        <input asp-for="Id" hidden />
-
-        <label asp-for="ExpenseName" class="form-label"></label>
-        <input asp-for="ExpenseName" class="form-control"/>
-        <div aps-validation-for="ExpenseName"></div>
-
-        <label asp-for="Amount" class="form-label"></label>
-        <input asp-for="Amount" class="form-control"/>
-        <div aps-validation-for="Amount"></div>
-
-
-
-        <a type="post" class="btn btn-primary mt-3" asp-controller="Expense" asp-action="AddOrUpdate"> ADD OR UPDATE </a>
-
-    </form>
-</div>
+                @{
+                    if(Model.Id == 0)
+                    {
+                        <input type="submit" class="btn btn-info w-100" value="Create" />
+                    }
+                    else
+                    {
+                        <input type="submit" class="btn btn-info w-100" value="Update" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</form>
