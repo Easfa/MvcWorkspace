@@ -11,8 +11,8 @@ using MvcWorkspace.Data;
 namespace MvcWorkspace.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221216103122_int2")]
-    partial class int2
+    [Migration("20221219061039_ExCat")]
+    partial class ExCat
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,13 +34,46 @@ namespace MvcWorkspace.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<int>("C_Id")
+                        .HasColumnType("int");
+
                     b.Property<string>("ExpenseName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("C_Id");
+
                     b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("MvcWorkspace.Models.ExpenseCategory", b =>
+                {
+                    b.Property<int>("C_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("C_Id"), 1L, 1);
+
+                    b.Property<string>("ExpenseCName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("C_Id");
+
+                    b.ToTable("ExpenseCategories");
+                });
+
+            modelBuilder.Entity("MvcWorkspace.Models.Expense", b =>
+                {
+                    b.HasOne("MvcWorkspace.Models.ExpenseCategory", "ExpenseCategory")
+                        .WithMany()
+                        .HasForeignKey("C_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ExpenseCategory");
                 });
 #pragma warning restore 612, 618
         }

@@ -14,15 +14,15 @@ namespace MvcWorkspace.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<ExpenseCategory> ExpenseCategory = _db.ExpenseCategory;
+            IEnumerable<ExpenseCategory> ExpenseCategory = _db.ExpenseCategories;
             return View(ExpenseCategory);
         }
 
         public IActionResult Delete(int id) 
         {
-            var expensec = _db.ExpenseCategory.Find(id);
+            var expensec = _db.ExpenseCategories.Find(id);
             if (expensec == null || id == 0) return NotFound();
-            _db.ExpenseCategory.Remove(expensec);
+            _db.ExpenseCategories.Remove(expensec);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -35,7 +35,7 @@ namespace MvcWorkspace.Controllers
             }
             else 
             {
-                var ex = _db.ExpenseCategory.Find(id);
+                var ex = _db.ExpenseCategories.Find(id);
                 if(ex == null || id == 0) return NotFound(); 
                 else return View(ex);
 
@@ -51,15 +51,15 @@ namespace MvcWorkspace.Controllers
                 if(expensec.C_Id == 0) { }
                 else 
                 {
-                    if (_db.ExpenseCategory.Find(expensec) == null)
+                    if (_db.ExpenseCategories.Find(expensec) == null)
                     {
-                        _db.ExpenseCategory.Add(expensec);
+                        _db.ExpenseCategories.Add(expensec);
                         _db.SaveChanges();
                         return RedirectToAction("Index");
                     }
                     else 
                     { 
-                        _db.ExpenseCategory.Update(expensec);
+                        _db.ExpenseCategories.Update(expensec);
                         _db.SaveChanges();
                         return RedirectToAction("Index");
                     }
