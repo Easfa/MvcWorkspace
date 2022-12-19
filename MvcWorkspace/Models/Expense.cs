@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcWorkspace.Models
@@ -16,8 +17,11 @@ namespace MvcWorkspace.Models
         [Range(1, int.MaxValue, ErrorMessage ="Yanlış Değer köşende ağlayabilirsin EZİK")]
         public int Amount { get; set; }
         
+        
         [ForeignKey("ExpenseCategory")]
+        [Display(Name = "Expense Category")]
         public int C_Id {get; set;}
+        [ValidateNever]
         public ExpenseCategory ExpenseCategory {get; set;}
     }
 }

@@ -16,9 +16,11 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="pb-3">
-                <label asp-for="ExpenseCategory.ExpenseCName" class="form-label"></label>
-                <input asp-for="ExpenseCategory.ExpenseCName" class="form-control" />
-                <span asp-validation-for="ExpenseCategory.ExpenseCName" class="text-danger"></span>
+                <label asp-for="C_Id" class="form-label"></label>
+                <select asp-for="C_Id" class="form-control" asp-items="@ViewBag.ExpenseCat">
+                    <option disabled selected>--- Select a Category ---</option>
+                </select>
+                <span asp-validation-for="C_Id" class="text-danger"></span>
             </div>
         </div>
         <div class="row">

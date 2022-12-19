@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcWorkspace.Data;
 using MvcWorkspace.Models;
 
@@ -33,6 +34,8 @@ namespace MvcWorkspace.Controllers
 
         public IActionResult AddOrUpdate(int id)
         {
+            IEnumerable<SelectListItem> ExpenseCat = _db.ExpenseCategories.Select(x => new SelectListItem {Value = x.C_Id.ToString(), Text = x.ExpenseCName});
+            ViewBag.ExpenseCat = ExpenseCat;
             if (id == 0)
                 return View(new Expense());
             else
