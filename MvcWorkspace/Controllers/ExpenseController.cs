@@ -72,13 +72,5 @@ namespace MvcWorkspace.Controllers
 
                 return RedirectToAction("Index");
         }
-
-        public IActionResult CategoryExpenses(int cid) 
-        {
-            ViewBag.Amounts = 0;
-            IEnumerable<Expense> Expenses = _db.Expenses.Where(x => x.C_Id == cid);
-            foreach (var exp in Expenses) ViewBag.Amounts += exp.Amount;
-            return View(Expenses);
-        }
     }
 }
