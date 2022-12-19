@@ -39,7 +39,11 @@
                 <tr class="align-middle">
                     <td width="20%">@expense.ExpenseName</td>
                     <td width="20%">@expense.Amount</td>
-                    <td width="20%">@expense.ExpenseCategory.ExpenseCName</td>
+                     <td width="20%">
+                         <a  asp-controller="Expense" asp-action="CategoryExpenses" asp-route-cid = "@expense.C_Id"> @expense.ExpenseCategory.ExpenseCName 
+                         </a></td> 
+                        
+                    
                     <td width="30%" class="">
                         <div class="w-100 btn-group" role="group">
                             <a asp-controller="Expense" asp-action="AddOrUpdate" asp-route-id="@expense.Id" class="btn btn-outline-primary mx-2">Update</a>
