@@ -15,6 +15,10 @@ namespace MvcWorkspace.Controllers
         public IActionResult Index()
         {
             IEnumerable<Expense> Expenses = _db.Expenses;
+            foreach (var expense in Expenses)
+            { 
+                expense.ExpenseCategory = _db.ExpenseCategories.Find(expense.C_Id); 
+            } 
             return View(Expenses);
         }
 
@@ -48,6 +52,7 @@ namespace MvcWorkspace.Controllers
                     _db.Update(expense);
                 }
                 _db.SaveChanges();
+
                 return RedirectToAction("Index");
         }
     }

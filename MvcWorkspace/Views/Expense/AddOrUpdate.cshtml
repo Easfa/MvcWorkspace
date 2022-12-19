@@ -15,6 +15,11 @@
                 <input asp-for="Amount" class="form-control" />
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
+            <div class="pb-3">
+                <label asp-for="ExpenseCategory.ExpenseCName" class="form-label"></label>
+                <input asp-for="ExpenseCategory.ExpenseCName" class="form-control" />
+                <span asp-validation-for="ExpenseCategory.ExpenseCName" class="text-danger"></span>
+            </div>
         </div>
         <div class="row">
             <div class="col-3 text-start">
