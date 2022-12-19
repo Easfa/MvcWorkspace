@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcWorkspace.Data;
 using MvcWorkspace.Models;
+using MvcWorkspace.Models.ViewModels;
 
 namespace MvcWorkspace.Controllers
 {
@@ -34,12 +35,21 @@ namespace MvcWorkspace.Controllers
 
         public IActionResult AddOrUpdate(int id)
         {
-            IEnumerable<SelectListItem> ExpenseCat = _db.ExpenseCategories.Select(x => new SelectListItem {Value = x.C_Id.ToString(), Text = x.ExpenseCName});
-            ViewBag.ExpenseCat = ExpenseCat;
+            ExpenseVM expenseVM = new ExpenseVM()
+            {
+                Expense = new Expense(),
+                CategoryDropdown = _db.ExpenseCategories.Select(x => new SelectListItem { Value = x.C_Id.ToString(), Text = x.ExpenseCName })
+
+            };
+            
             if (id == 0)
-                return View(new Expense());
-            else
-                return View(_db.Expenses.Find(id));
+                return View(expenseVM);
+            else 
+            {
+                expenseVM.Expense = _db.Expenses.Find(id);
+                return View(expenseVM);
+            }
+                
         }
 
         [HttpPost]
