@@ -14,13 +14,13 @@ namespace MvcWorkspace.Services
         //Update expense
         void Update(Expense expense);
         //Delete expense
-        void Delete(Expense expense);
+        bool Delete(int id);
         //Category expense
         IEnumerable<Expense> GetCatExpenses(int id);
         //Expenses with catname
-        IEnumerable<Expense> GetExpensesWithCatName(int id);
+        string GetExpensesCatName(int id);
         //Expenses for cat
-        IEnumerable<Expense> GetExpensesForCatName(int id);
+        IEnumerable<Expense> GetExpensesForCatName();
         //ExpenseCategoriesForSelectList
         IEnumerable<SelectListItem> CategorySelectListItems();
 

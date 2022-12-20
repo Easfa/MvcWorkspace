@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using MvcWorkspace.Data;
+using MvcWorkspace.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IExpenseService, ExpenseService>();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultCon")));
+
 
 var app = builder.Build();
 
