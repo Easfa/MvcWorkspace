@@ -20,7 +20,7 @@ namespace MvcWorkspace.Services
         //Expenses with catname
         string GetExpensesCatName(int id);
         //Expenses for cat
-        IEnumerable<Expense> GetExpensesForCatName();
+        IEnumerable<Expense> GetExpensesForCatName(int cid);
         //ExpenseCategoriesForSelectList
         IEnumerable<SelectListItem> CategorySelectListItems();
 

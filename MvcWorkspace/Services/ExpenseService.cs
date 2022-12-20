@@ -34,7 +34,7 @@ namespace MvcWorkspace.Services
 
         public IEnumerable<Expense> GetExpenses() { return _db.Expenses.Include(x => x.ExpenseCategory); }
 
-        public IEnumerable<Expense> GetExpensesForCatName() { return _db.Expenses.Include(x => x.ExpenseCategory); }
+        public IEnumerable<Expense> GetExpensesForCatName(int cid) { return _db.Expenses.Where(x => x.C_Id == cid); }
 
         public string GetExpensesCatName(int id) { return _db.ExpenseCategories.Find(id).ExpenseCName; }
 

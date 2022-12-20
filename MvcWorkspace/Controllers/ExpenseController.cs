@@ -62,7 +62,7 @@ namespace MvcWorkspace.Controllers
 
         public IActionResult CategoryExpenses(int cid) 
         {
-            IEnumerable<Expense> Expenses = _service.GetCatExpenses();
+            IEnumerable<Expense> Expenses = _service.GetExpensesForCatName(cid);
             GetTotal(Expenses);
             ViewBag.ExpenseCat = _service.GetExpensesCatName(cid);
             return View(Expenses);
