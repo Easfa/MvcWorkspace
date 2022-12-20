@@ -75,10 +75,17 @@ namespace MvcWorkspace.Controllers
 
         public IActionResult CategoryExpenses(int cid) 
         {
-            ViewBag.Amounts = 0;
             IEnumerable<Expense> Expenses = _db.Expenses.Where(x => x.C_Id == cid);
-            foreach (var exp in Expenses) ViewBag.Amounts += exp.Amount;
+            GetTotal(Expenses);
+            ViewBag.ExpenseCat = _db.ExpenseCategories.Find(cid).ExpenseCName;
             return View(Expenses);
+        }
+
+        private void GetTotal(IEnumerable<Expense> expenses)
+        {
+            ViewBag.Amounts = 0;
+            
+            foreach (var exp in expenses) ViewBag.Amounts += exp.Amount;
         }
     }
 }
